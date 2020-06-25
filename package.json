@@ -1,6 +1,6 @@
 {
   "name": "react-native-amazing-cropper",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Custom react native cropper with rotation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "expo-image-manipulator": "^8.2.1"
+    "@react-native-community/image-editor": "^2.3.0",
+    "expo-image-manipulator": "^8.2.1",
+    "react-native-image-rotate": "^2.1.0"
   },
   "peerDependencies": {
     "@react-native-community/image-editor": "*",
