@@ -6,6 +6,7 @@ import ImageEditor from '@react-native-community/image-editor';
 import { Q } from '../components/Cropper/Cropper.constants';
 import Cropper from '../components/Cropper/Cropper.component';
 import { getCropperLimits } from '../utils';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 type CropperPageProps = {
   footerComponent: JSX.Element;
@@ -680,7 +681,7 @@ class CropperPage extends Component<CropperPageProps, State> {
     height = (height * imageHeight) / IMAGE_H;
     x = (x * imageWidth) / IMAGE_W;
     y = (y * imageHeight) / IMAGE_H;
-    const cropData = {
+    /*const cropData = {
       offset: { x, y },
       size: { width, height },
       resizeMode: 'stretch',
@@ -702,7 +703,18 @@ class CropperPage extends Component<CropperPageProps, State> {
       (err: Error) => {
         this.props.onError(err);
       },
-    );
+    );*/
+    ImageManipulator.manipulateAsync(this.props.imageUri, [{ crop: { originX: x, originY: y, width: width, height: height } }], {
+      compress: 1,
+      format: ImageManipulator.SaveFormat.PNG,
+      base64: false,
+    })
+      .then(value => {
+        this.props.onDone(value.uri);
+      })
+      .catch(reason => {
+        this.props.onError(reason);
+      });
   };
 
   render() {
