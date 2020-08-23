@@ -19,6 +19,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@react-native-community/image-editor": "^2.3.0",
     "expo-image-manipulator": "^8.2.1"
   },
   "peerDependencies": {
